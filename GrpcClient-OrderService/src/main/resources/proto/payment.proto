@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package grpc.payment;
+
+option java_multiple_files = true;
+option java_package = "com.grpc.payment";
+
+message PaymentRequest {
+  string orderId = 1;
+  int32 price = 2;
+  bool prepaid = 3;
+  string paymentUser = 4;
+}
+
+message PaymentResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+service PaymentService {
+  rpc payOrder(PaymentRequest) returns (PaymentResponse) {}
+}
